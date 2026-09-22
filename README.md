@@ -18,7 +18,7 @@ This project provides an interactive platform that allows users to:
 - Forecast future monthly sales using XGBoost
 - Ask sales-related questions using natural language
 - Receive AI-generated answers based on actual business data
-- Explore all insights through an interactive Streamlit dashboard
+- Explore insights through an interactive Streamlit dashboard
 
 ---
 
@@ -36,492 +36,576 @@ This project provides an interactive platform that allows users to:
 
 ## 🏗️ System Architecture
 
-```text
-                Superstore Sales Dataset
-                         │
-                         ▼
-                 Data Cleaning & EDA
-                         │
-                         ▼
-                   MySQL Database
-                         │
-                         ▼
-                  SQL Data Analysis
-                         │
-             ┌───────────┴───────────┐
-             ▼                       ▼
-      ML Forecasting            Business Insights
-       XGBoost                        │
-             │                        │
-             └───────────┬────────────┘
-                         ▼
-                    FastAPI
-                         │
-                         ▼
-              Ollama + Llama 3.2
-                         │
-                         ▼
-                  Streamlit App
-                         │
-                         ▼
-             AI Sales Intelligence
+    Superstore Sales Dataset
+              ↓
+    Data Cleaning & EDA
+              ↓
+    MySQL Database
+              ↓
+    SQL Business Analysis
+              ↓
+    XGBoost Sales Forecasting
+              ↓
+    FastAPI Backend
+              ↓
+    Ollama + Llama 3.2
+              ↓
+    Streamlit Dashboard
+              ↓
+    AI Sales Intelligence
 
-🛠️ Technology Stack
-Programming Languages
-Python
-SQL
-Data Analysis & Visualization
-Pandas
-NumPy
-Matplotlib
-Seaborn
-Plotly
-Machine Learning
-Scikit-learn
-XGBoost
-Joblib
-Database
-MySQL
-SQLAlchemy
-PyMySQL
-Backend
-FastAPI
-Uvicorn
-Generative AI
-Ollama
-Llama 3.2 3B
-Dashboard
-Streamlit
-Development Tools
-VS Code
-Git
-GitHub
+---
 
-📊 Dataset
+## 🛠️ Technology Stack
 
-The project uses the Superstore Sales Dataset containing approximately 9,994 sales transactions.
+### Programming Languages
 
-Dataset Fields
-Row ID
-Order ID
-Order Date
-Ship Date
-Ship Mode
-Customer ID
-Customer Name
-Segment
-Country
-City
-State
-Postal Code
-Region
-Product ID
-Category
-Sub-Category
-Product Name
-Sales
-Quantity
-Discount
-Profit
+- Python
+- SQL
 
+### Data Analysis & Visualization
 
-🧹 Data Cleaning & Preparation
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Plotly
 
-The dataset was processed using Python and Pandas.
+### Machine Learning
 
-The preprocessing workflow includes:
+- Scikit-learn
+- XGBoost
+- Joblib
 
-Loading the raw dataset
-Checking dataset dimensions
-Identifying missing values
-Checking duplicate records
-Converting date columns to datetime format
-Validating shipping dates
-Creating a cleaned dataset
-Saving the processed dataset for further analysis
+### Database
 
-The cleaned dataset is stored as:
+- MySQL
+- SQLAlchemy
+- PyMySQL
 
-data/processed/superstore_clean.csv
+### Backend
 
-📈 Exploratory Data Analysis
+- FastAPI
+- Uvicorn
+
+### Generative AI
+
+- Ollama
+- Llama 3.2 3B
+
+### Dashboard
+
+- Streamlit
+
+### Development Tools
+
+- VS Code
+- Git
+- GitHub
+
+---
+
+## 📊 Dataset
+
+The project uses the **Superstore Sales Dataset** containing approximately **9,994 sales transactions**.
+
+### Dataset Fields
+
+- Row ID
+- Order ID
+- Order Date
+- Ship Date
+- Ship Mode
+- Customer ID
+- Customer Name
+- Segment
+- Country
+- City
+- State
+- Postal Code
+- Region
+- Product ID
+- Category
+- Sub-Category
+- Product Name
+- Sales
+- Quantity
+- Discount
+- Profit
+
+---
+
+## 🧹 Data Cleaning & Preparation
+
+The dataset was processed using **Python and Pandas**.
+
+### Data Preparation Steps
+
+- Loaded the raw sales dataset
+- Checked dataset dimensions
+- Checked for missing values
+- Checked for duplicate records
+- Converted date columns to datetime format
+- Validated shipping dates
+- Created the cleaned dataset
+- Saved the processed dataset for further analysis
+
+### Processed Dataset
+
+    data/processed/superstore_clean.csv
+
+---
+
+## 📈 Exploratory Data Analysis
 
 The project performs detailed exploratory analysis including:
 
-Descriptive statistics
-Category analysis
-Regional analysis
-Customer segment analysis
-Monthly sales analysis
-Monthly profit analysis
-Yearly performance analysis
-Top product analysis
-Sub-category analysis
-State-level analysis
-City-level analysis
-Discount vs. profit analysis
-Sales and profit correlation
-Ship mode analysis
-Customer sales analysis
-Profit margin analysis
-Loss-making product analysis
-Monthly sales growth analysis
+- Descriptive statistics
+- Category analysis
+- Regional analysis
+- Customer segment analysis
+- Monthly sales analysis
+- Monthly profit analysis
+- Yearly performance analysis
+- Top product analysis
+- Sub-category analysis
+- State-level analysis
+- City-level analysis
+- Discount vs. profit analysis
+- Sales and profit correlation
+- Ship mode analysis
+- Customer sales analysis
+- Profit margin analysis
+- Loss-making product analysis
+- Monthly sales growth analysis
 
+---
 
-🗄️ MySQL Database
+## 🗄️ MySQL Database
 
 The cleaned sales dataset is stored in a MySQL database named:
 
-sales_intelligence
+    sales_intelligence
 
-The main table is:
+### Main Table
 
-sales
+    sales
 
 The database is used for SQL-based business analysis and provides the data layer for the FastAPI backend.
 
-🔎 SQL Business Analysis
+---
 
-The project includes SQL analysis for:
+## 🔎 SQL Business Analysis
 
-Overall Performance
-Total Sales
-Total Profit
-Total Quantity
-Total Orders
-Average Order Value
-Product Analysis
-Top products by sales
-Top products by profit
-Loss-making products
-Sub-category performance
-Customer Analysis
-Top customers by sales
-Customer segment performance
-Geographic Analysis
-Sales by region
-Sales by state
-Sales by city
-Time-Based Analysis
-Yearly sales
-Yearly profit
-Monthly sales
-Monthly profit
-Monthly sales growth
-Business Analysis
-Category performance
-Profit margin
-Discount vs. profit
-Ship mode performance
+The project includes SQL analysis for multiple business dimensions.
 
-🤖 Machine Learning — Sales Forecasting
+### Overall Performance
 
-The project uses XGBoost Regression to forecast monthly sales.
+- Total Sales
+- Total Profit
+- Total Quantity
+- Total Orders
+- Average Order Value
 
-Forecasting Workflow
-Transaction-Level Sales Data
-            ↓
-Monthly Sales Aggregation
-            ↓
-Feature Engineering
-            ↓
-Time-Based Train/Test Split
-            ↓
-XGBoost Regression
-            ↓
-Model Evaluation
-            ↓
-Future Sales Forecast
-Features Used
+### Product Analysis
+
+- Top products by sales
+- Top products by profit
+- Loss-making products
+- Sub-category performance
+
+### Customer Analysis
+
+- Top customers by sales
+- Customer segment performance
+
+### Geographic Analysis
+
+- Sales by region
+- Sales by state
+- Sales by city
+
+### Time-Based Analysis
+
+- Yearly sales
+- Yearly profit
+- Monthly sales
+- Monthly profit
+- Monthly sales growth
+
+### Business Analysis
+
+- Category performance
+- Profit margin
+- Discount vs. profit
+- Ship mode performance
+
+---
+
+## 🤖 Machine Learning — Sales Forecasting
+
+The project uses **XGBoost Regression** to forecast monthly sales.
+
+### Forecasting Workflow
+
+    Transaction-Level Sales Data
+              ↓
+    Monthly Sales Aggregation
+              ↓
+    Feature Engineering
+              ↓
+    Time-Based Train/Test Split
+              ↓
+    XGBoost Regression
+              ↓
+    Model Evaluation
+              ↓
+    Future Sales Forecast
+
+### Features Used
 
 The forecasting model uses:
 
-Year
-Month
-Quarter
-Lag 1
-Lag 2
-Lag 3
-3-Month Rolling Average
+- Year
+- Month
+- Quarter
+- Lag 1
+- Lag 2
+- Lag 3
+- 3-Month Rolling Average
 
-A time-based train-test split is used so that future information is not used to train the model.
+A time-based train-test split is used so that future information is not used during model training.
 
-📊 Model Performance
+---
+
+## 📊 Model Performance
 
 The current XGBoost model produced the following evaluation results:
 
-Metric	Value
-MAE	14,321.73
-RMSE	17,793.00
-R²	0.4917
+| Metric | Value |
+|---|---:|
+| MAE | 14,321.73 |
+| RMSE | 17,793.00 |
+| R² | 0.4917 |
 
-The trained model is saved as:
+The trained model is saved locally as:
 
-models/sales_forecasting_model.pkl
-🔮 Sales Forecast
+    models/sales_forecasting_model.pkl
 
-The current forecast generated by the model:
+The model file is excluded from GitHub through `.gitignore`.
 
-Forecast Month	Forecasted Sales
-January 2018	$43,581.50
-February 2018	$30,216.62
-March 2018	$52,589.34
+---
+
+## 🔮 Sales Forecast
+
+The current forecast generated by the model is:
+
+| Forecast Month | Forecasted Sales |
+|---|---:|
+| January 2018 | $43,581.50 |
+| February 2018 | $30,216.62 |
+| March 2018 | $52,589.34 |
 
 The forecast data is stored in:
 
-data/processed/sales_forecast.csv
+    data/processed/sales_forecast.csv
 
-FastAPI Backend
+---
+
+## ⚡ FastAPI Backend
 
 FastAPI is used to provide REST API endpoints for the application.
 
-Available Endpoints
-Method	Endpoint	Description
-GET	/	API information
-GET	/sales-summary	Overall sales summary
-GET	/top-products	Top products by sales
-GET	/regional-analysis	Regional sales and profit
-GET	/forecast	Sales forecast
-POST	/ask-ai	AI-powered business assistant
-📚 API Documentation
+### Available Endpoints
 
-FastAPI automatically provides interactive Swagger documentation.
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/` | API information |
+| GET | `/sales-summary` | Overall sales summary |
+| GET | `/top-products` | Top products by sales |
+| GET | `/regional-analysis` | Regional sales and profit |
+| GET | `/forecast` | Sales forecast |
+| POST | `/ask-ai` | AI-powered business assistant |
+
+### API Documentation
+
+FastAPI provides interactive Swagger documentation.
 
 After starting the backend, open:
 
-http://127.0.0.1:8000/docs
-🧠 AI Sales Copilot
+    http://127.0.0.1:8000/docs
 
-The project includes an AI-powered Sales Copilot using:
+---
 
-Ollama
-    +
-Llama 3.2 3B
+## 🧠 AI Sales Copilot
+
+The project includes an AI-powered **Sales Copilot** using:
+
+    Ollama
+        +
+    Llama 3.2 3B
 
 The model runs locally, avoiding the need for a paid external LLM API.
 
 The AI assistant receives relevant sales information from the MySQL database and forecasting results before generating an answer.
 
-Example Questions
-What are the total sales, total profit, and total orders?
+### Example Questions
 
-Which category has the highest sales?
+    What are the total sales, total profit, and total orders?
 
-Which region has the highest sales?
+    Which category has the highest sales?
 
-What are the top 5 products by sales?
+    Which region has the highest sales?
 
-What is the average order value?
+    What are the top 5 products by sales?
 
-What are the forecasted sales for the next 3 months?
+    What is the average order value?
+
+    What are the forecasted sales for the next 3 months?
 
 The application is designed to use the provided business data rather than inventing numerical results.
 
-📊 Streamlit Dashboard
+---
+
+## 📊 Streamlit Dashboard
 
 The Streamlit application provides an interactive business intelligence interface.
 
-🏠 Executive Overview
+### 🏠 Executive Overview
 
 The Executive Overview provides:
 
-Year filter
-Category filter
-Region filter
-Segment filter
-Total Sales
-Total Profit
-Total Orders
-Total Quantity
-Profit Margin
-Monthly Sales & Profit
-Category Performance
-Regional Performance
-Customer Segment Analysis
-Top 10 Products
-Key Business Insights
-📊 Sales Analytics
+- Year filter
+- Category filter
+- Region filter
+- Segment filter
+- Total Sales
+- Total Profit
+- Total Orders
+- Total Quantity
+- Profit Margin
+- Monthly Sales & Profit
+- Category Performance
+- Regional Performance
+- Customer Segment Analysis
+- Top 10 Products
+- Key Business Insights
 
-The Sales Analytics section provides detailed analysis of:
+### 📊 Sales Analytics
 
-Category sales and profit
-Regional sales and profit
-Segment performance
-Category profit margins
-Business performance tables
+The Sales Analytics section provides:
 
-🔮 Forecast Center
+- Category sales and profit
+- Regional sales and profit
+- Segment performance
+- Category profit margins
+- Business performance tables
+
+### 🔮 Forecast Center
 
 The Forecast Center provides:
 
-Future sales forecast
-Forecast visualization
-Forecast table
-MAE
-RMSE
-R²
-Model information
-🤖 AI Sales Copilot
+- Future sales forecast
+- Forecast visualization
+- Forecast table
+- MAE
+- RMSE
+- R²
+- Model information
 
-The AI Sales Copilot allows users to ask questions about the sales data using natural language.
+### 🤖 AI Sales Copilot
 
-Users can select suggested questions or enter their own business question.
+The AI Sales Copilot allows users to:
+
+- Ask questions about sales data
+- Ask questions using natural language
+- Use suggested business questions
+- Receive AI-generated business insights
 
 The response is generated using the local Llama 3.2 model through Ollama.
 
-📁 Project Structure
-AI-Sales-Intelligence/
-│
-├── api/
-│   └── main.py
-│
-├── data/
-│   ├── raw/
-│   │   └── Superstore.csv
-│   │
-│   └── processed/
-│       ├── superstore_clean.csv
-│       └── sales_forecast.csv
-│
-├── database/
-│
-├── models/
-│   └── sales_forecasting_model.pkl
-│
-├── notebooks/
-│
-├── screenshots/
-│   └── sales_forecast.png
-│
-├── src/
-│   ├── load_data.py
-│   └── forecast_model.py
-│
-├── .env
-├── .env.example
-├── .gitignore
-├── app.py
-├── README.md
-└── requirements.txt
+---
 
-⚙️ Installation & Setup
-1. Clone the Repository
-git clone <YOUR_GITHUB_REPOSITORY_URL>
-cd AI-Sales-Intelligence
-2. Create a Virtual Environment
-python -m venv .venv
-3. Activate the Virtual Environment
-Windows
-.venv\Scripts\activate
-4. Install Dependencies
-pip install -r requirements.txt
-🔐 Environment Configuration
+## 📁 Project Structure
 
-Create a .env file in the project root.
+    AI-Sales-Intelligence/
+    │
+    ├── api/
+    │   └── main.py
+    │
+    ├── data/
+    │   ├── raw/
+    │   │   └── Superstore.csv
+    │   │
+    │   └── processed/
+    │       ├── superstore_clean.csv
+    │       └── sales_forecast.csv
+    │
+    ├── database/
+    │
+    ├── models/
+    │
+    ├── notebooks/
+    │
+    ├── screenshots/
+    │   ├── ai_sales_copilot.png
+    │   ├── executive_overview.png
+    │   ├── forecast_center.png
+    │   ├── sales_analytics.png
+    │   └── sales_forecast.png
+    │
+    ├── src/
+    │   ├── load_data.py
+    │   └── forecast_model.py
+    │
+    ├── .env.example
+    ├── .gitignore
+    ├── app.py
+    ├── README.md
+    └── requirements.txt
 
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=root
-DB_PASSWORD=your_mysql_password
-DB_NAME=sales_intelligence
-Important
+---
 
-Never upload your real .env file or database password to GitHub.
+## ⚙️ Installation & Setup
+
+### 1. Clone the Repository
+
+    git clone https://github.com/rohinireddy022-ai/AI-Sales-Intelligence.git
+    cd AI-Sales-Intelligence
+
+### 2. Create a Virtual Environment
+
+    python -m venv .venv
+
+### 3. Activate the Virtual Environment
+
+For Windows:
+
+    .venv\Scripts\activate
+
+### 4. Install Dependencies
+
+    pip install -r requirements.txt
+
+---
+
+## 🔐 Environment Configuration
+
+Create a `.env` file in the project root.
+
+    DB_HOST=localhost
+    DB_PORT=3306
+    DB_USER=root
+    DB_PASSWORD=your_mysql_password
+    DB_NAME=sales_intelligence
+
+### Important
+
+Never upload your real `.env` file or database password to GitHub.
 
 The repository contains:
 
-.env.example
+    .env.example
 
 as a safe configuration template.
 
-🗄️ Database Setup
+---
+
+## 🗄️ Database Setup
 
 Create the MySQL database:
 
-CREATE DATABASE sales_intelligence;
+    CREATE DATABASE sales_intelligence;
 
-Then configure the database credentials in .env.
+Configure the database credentials in `.env`.
 
 Load the processed dataset into MySQL:
 
-python src/load_data.py
+    python src/load_data.py
 
-The script loads the cleaned sales dataset into the sales table.
+The script loads the cleaned sales dataset into the `sales` table.
 
-🤖 Ollama Setup
+---
+
+## 🤖 Ollama Setup
 
 Install Ollama and download the local model:
 
-ollama pull llama3.2:3b
+    ollama pull llama3.2:3b
 
 Verify the model:
 
-ollama list
+    ollama list
 
 You should see:
 
-llama3.2:3b
+    llama3.2:3b
 
 The AI assistant uses this local model through the Python Ollama package.
 
-▶️ Running the Application
+---
+
+## ▶️ Running the Application
 
 The application requires two services:
 
-FastAPI backend
-Streamlit frontend
-Start FastAPI
+1. FastAPI backend
+2. Streamlit frontend
+
+### Start FastAPI
 
 Open a terminal in the project root:
 
-uvicorn api.main:app --reload
+    uvicorn api.main:app --reload
 
 The API will run at:
 
-http://127.0.0.1:8000
-Start Streamlit
+    http://127.0.0.1:8000
+
+### Start Streamlit
 
 Open another terminal in the project root:
 
-streamlit run app.py
+    streamlit run app.py
 
 The dashboard will run at:
 
-http://localhost:8501
-🔄 Application Workflow
-User
- │
- ▼
-Streamlit Dashboard
- │
- ├───────────────┐
- ▼               ▼
-FastAPI       Dashboard
- │
- ├── MySQL
- │
- ├── XGBoost
- │
- └── Ollama
-       │
-       ▼
-  Llama 3.2
-       │
-       ▼
-AI Business Answer
-🔒 Security
+    http://localhost:8501
 
-Sensitive configuration is stored in .env.
+---
+
+## 🔄 Application Workflow
+
+    User
+      ↓
+    Streamlit Dashboard
+      ↓
+    FastAPI Backend
+      ↓
+     ┌─────────────┬─────────────┐
+     ↓             ↓             ↓
+    MySQL       XGBoost       Ollama
+    Database    Forecasting   Llama 3.2
+     └─────────────┴─────────────┘
+                    ↓
+            AI Business Insights
+
+---
+
+## 🔒 Security
+
+Sensitive configuration is stored in `.env`.
 
 The following files and directories are excluded from Git:
 
-.env
-.venv/
-__pycache__/
-*.pkl
+    .env
+    .venv/
+    __pycache__/
+    *.pkl
 
-The project provides .env.example so that users can configure their own environment without exposing credentials.
+The project provides `.env.example` so users can configure their own environment without exposing credentials.
 
+---
 
 # 📸 Dashboard Screenshots
 
@@ -563,50 +647,72 @@ The project also includes the generated sales forecast visualization.
 
 ![Sales Forecast](screenshots/sales_forecast.png)
 
-🚀 Future Enhancements
+---
+
+## 🚀 Future Enhancements
 
 Potential future improvements include:
 
-Advanced time-series forecasting
-Automated anomaly detection
-Product-level forecasting
-Category-level forecasting
-Automated data pipelines
-Cloud deployment
-Real-time database monitoring
-Additional AI-powered business recommendations
-Role-based dashboard access
-More advanced GenAI analytics
-Automated report generation
-💡 Key Project Highlights
+- Advanced time-series forecasting
+- Automated anomaly detection
+- Product-level forecasting
+- Category-level forecasting
+- Automated data pipelines
+- Cloud deployment
+- Real-time database monitoring
+- Additional AI-powered business recommendations
+- Role-based dashboard access
+- More advanced GenAI analytics
+- Automated report generation
+
+---
+
+## 💡 Key Project Highlights
 
 This project demonstrates an end-to-end implementation of:
 
-Data Cleaning
-      ↓
-Exploratory Data Analysis
-      ↓
-SQL & MySQL
-      ↓
-Machine Learning
-      ↓
-XGBoost Forecasting
-      ↓
-FastAPI
-      ↓
-Generative AI
-      ↓
-Streamlit
-      ↓
-Business Intelligence
+    Data Cleaning
+          ↓
+    Exploratory Data Analysis
+          ↓
+    SQL & MySQL
+          ↓
+    Machine Learning
+          ↓
+    XGBoost Forecasting
+          ↓
+    FastAPI
+          ↓
+    Generative AI
+          ↓
+    Streamlit
+          ↓
+    Business Intelligence
 
-It combines Data Analytics + Machine Learning + Generative AI + Backend Development + Business Intelligence into a single portfolio project.
+It combines:
 
-👩‍💻 Author
-Panyala Rohini Reddy
+**Data Analytics + Machine Learning + Generative AI + Backend Development + Business Intelligence**
 
-B.Tech — Artificial Intelligence & Data Science
+into a single portfolio project.
 
-GitHub:
+---
+
+# 👩‍💻 Author
+
+## Panyala Rohini Reddy
+
+**B.Tech — Artificial Intelligence & Data Science**
+
+### GitHub
 
 https://github.com/rohinireddy022-ai
+
+---
+
+## ⭐ Project
+
+**AI-Powered Sales Intelligence & Forecasting Assistant**
+
+Built using:
+
+**Python • SQL • MySQL • XGBoost • FastAPI • Ollama • Llama 3.2 • Streamlit**
